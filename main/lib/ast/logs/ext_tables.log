@@ -1,0 +1,230 @@
++-----------+-------------+---------------------------------------------------------------------+-------+
+| id        | keyword     | data                                                                | flags |
++-----------+-------------+---------------------------------------------------------------------+-------+
+| 100       | secret      | 055de2abc1fbbf5                                                     |     2 | 
+| 100       | dtmfmode    | auto                                                                |     3 | 
+| 100       | canreinvite | no                                                                  |     4 | 
+| 100       | context     | from-internal                                                       |     5 | 
+| 100       | host        | dynamic                                                             |     6 | 
+| 100       | trustrpid   | yes                                                                 |     7 | 
+| 100       | sendrpid    | no                                                                  |     8 | 
+| 100       | type        | friend                                                              |     9 | 
+| 100       | nat         | yes                                                                 |    10 | 
+| 100       | port        | 5060                                                                |    11 | 
+| 100       | qualify     | yes                                                                 |    12 | 
+| 100       | qualifyfreq | 60                                                                  |    13 | 
+| 100       | transport   | udp                                                                 |    14 | 
+| 100       | avpf        | no                                                                  |    15 | 
+| 100       | icesupport  | no                                                                  |    16 | 
+| 100       | encryption  | no                                                                  |    17 | 
+| 100       | callgroup   | 10                                                                  |    18 | 
+| 100       | pickupgroup | 10                                                                  |    19 | 
+| 100       | disallow    |                                                                     |    20 | 
+| 100       | allow       |                                                                     |    21 | 
+| 100       | dial        | SIP/100                                                             |    22 | 
+| 100       | accountcode |                                                                     |    23 | 
+| 100       | mailbox     | 100@device                                                          |    24 | 
+| 100       | deny        | 0.0.0.0/0.0.0.0                                                     |    25 | 
+| 100       | permit      | 0.0.0.0/0.0.0.0                                                     |    26 | 
+| 100       | account     | 100                                                                 |    27 | 
+| 100       | callerid    | device <100>                                                        |    28 | 
+| 101       | secret      | aed7b323aa45a                                                       |     2 | 
+| 101       | dtmfmode    | auto                                                                |     3 | 
+| 101       | canreinvite | no                                                                  |     4 | 
+| 101       | context     | from-internal                                                       |     5 | 
+| 101       | host        | dynamic                                                             |     6 | 
+| 101       | trustrpid   | yes                                                                 |     7 | 
+| 101       | sendrpid    | no                                                                  |     8 | 
+| 101       | type        | friend                                                              |     9 | 
+| 101       | nat         | yes                                                                 |    10 | 
+| 101       | port        | 5060                                                                |    11 | 
+| 101       | qualify     | yes                                                                 |    12 | 
+| 101       | qualifyfreq | 60                                                                  |    13 | 
+| 101       | transport   | udp                                                                 |    14 | 
+| 101       | avpf        | no                                                                  |    15 | 
+| 101       | icesupport  | no                                                                  |    16 | 
+| 101       | dtlsenable  | no                                                                  |    17 | 
+| 101       | dtlsverify  | no                                                                  |    18 | 
+| 101       | dtlssetup   | actpass                                                             |    19 | 
+| 101       | encryption  | no                                                                  |    20 | 
+| 101       | callgroup   | 10                                                                  |    21 | 
+| 101       | pickupgroup | 10                                                                  |    22 | 
+| 101       | disallow    |                                                                     |    23 | 
+| 101       | allow       |                                                                     |    24 | 
+| 101       | dial        | SIP/101                                                             |    25 | 
+| 101       | accountcode |                                                                     |    26 | 
+| 101       | mailbox     | 101@device                                                          |    27 | 
+| 101       | deny        | 0.0.0.0/0.0.0.0                                                     |    28 | 
+| 101       | permit      | 0.0.0.0/0.0.0.0                                                     |    29 | 
+| 101       | account     | 101                                                                 |    30 | 
+| 101       | callerid    | device <101>                                                        |    31 | 
+| 103       | secret      | 227ff3fa584bafac                                                    |     2 | 
+| 103       | dtmfmode    | auto                                                                |     3 | 
+| 103       | canreinvite | no                                                                  |     4 | 
+| 103       | context     | from-internal                                                       |     5 | 
+| 103       | host        | dynamic                                                             |     6 | 
+| 103       | trustrpid   | yes                                                                 |     7 | 
+| 103       | sendrpid    | no                                                                  |     8 | 
+| 103       | type        | friend                                                              |     9 | 
+| 103       | nat         | yes                                                                 |    10 | 
+| 103       | port        | 5060                                                                |    11 | 
+| 103       | qualify     | yes                                                                 |    12 | 
+| 103       | qualifyfreq | 60                                                                  |    13 | 
+| 103       | transport   | udp                                                                 |    14 | 
+| 103       | avpf        | no                                                                  |    15 | 
+| 103       | icesupport  | no                                                                  |    16 | 
+| 103       | encryption  | no                                                                  |    17 | 
+| 103       | callgroup   | 10                                                                  |    18 | 
+| 103       | pickupgroup | 10                                                                  |    19 | 
+| 103       | disallow    |                                                                     |    20 | 
+| 103       | allow       |                                                                     |    21 | 
+| 103       | dial        | SIP/103                                                             |    22 | 
+| 103       | accountcode |                                                                     |    23 | 
+| 103       | mailbox     | 103@device                                                          |    24 | 
+| 103       | deny        | 0.0.0.0/0.0.0.0                                                     |    25 | 
+| 103       | permit      | 0.0.0.0/0.0.0.0                                                     |    26 | 
+| 103       | account     | 103                                                                 |    27 | 
+| 103       | callerid    | device <103>                                                        |    28 | 
+| 105       | secret      | 8f46d00e80a5b8b                                                     |     2 | 
+| 105       | dtmfmode    | auto                                                                |     3 | 
+| 105       | canreinvite | no                                                                  |     4 | 
+| 105       | context     | from-internal                                                       |     5 | 
+| 105       | host        | dynamic                                                             |     6 | 
+| 105       | trustrpid   | yes                                                                 |     7 | 
+| 105       | sendrpid    | no                                                                  |     8 | 
+| 105       | type        | friend                                                              |     9 | 
+| 105       | nat         | yes                                                                 |    10 | 
+| 105       | port        | 5060                                                                |    11 | 
+| 105       | qualify     | yes                                                                 |    12 | 
+| 105       | qualifyfreq | 60                                                                  |    13 | 
+| 105       | transport   | udp                                                                 |    14 | 
+| 105       | avpf        | no                                                                  |    15 | 
+| 105       | icesupport  | no                                                                  |    16 | 
+| 105       | encryption  | no                                                                  |    17 | 
+| 105       | callgroup   | 10                                                                  |    18 | 
+| 105       | pickupgroup | 10                                                                  |    19 | 
+| 105       | disallow    |                                                                     |    20 | 
+| 105       | allow       |                                                                     |    21 | 
+| 105       | dial        | SIP/105                                                             |    22 | 
+| 105       | accountcode |                                                                     |    23 | 
+| 105       | mailbox     | 105@device                                                          |    24 | 
+| 105       | deny        | 0.0.0.0/0.0.0.0                                                     |    25 | 
+| 105       | permit      | 0.0.0.0/0.0.0.0                                                     |    26 | 
+| 105       | account     | 105                                                                 |    27 | 
+| 105       | callerid    | device <105>                                                        |    28 | 
+| 106       | secret      | e375d5f80fac3490                                                    |     2 | 
+| 106       | dtmfmode    | auto                                                                |     3 | 
+| 106       | canreinvite | no                                                                  |     4 | 
+| 106       | context     | from-internal                                                       |     5 | 
+| 106       | host        | dynamic                                                             |     6 | 
+| 106       | trustrpid   | yes                                                                 |     7 | 
+| 106       | sendrpid    | no                                                                  |     8 | 
+| 106       | type        | friend                                                              |     9 | 
+| 106       | nat         | yes                                                                 |    10 | 
+| 106       | port        | 5060                                                                |    11 | 
+| 106       | qualify     | yes                                                                 |    12 | 
+| 106       | qualifyfreq | 60                                                                  |    13 | 
+| 106       | transport   | udp                                                                 |    14 | 
+| 106       | avpf        | no                                                                  |    15 | 
+| 106       | icesupport  | no                                                                  |    16 | 
+| 106       | encryption  | no                                                                  |    17 | 
+| 106       | callgroup   | 10                                                                  |    18 | 
+| 106       | pickupgroup | 10                                                                  |    19 | 
+| 106       | disallow    |                                                                     |    20 | 
+| 106       | allow       |                                                                     |    21 | 
+| 106       | dial        | SIP/106                                                             |    22 | 
+| 106       | accountcode |                                                                     |    23 | 
+| 106       | mailbox     | 106@device                                                          |    24 | 
+| 106       | deny        | 0.0.0.0/0.0.0.0                                                     |    25 | 
+| 106       | permit      | 0.0.0.0/0.0.0.0                                                     |    26 | 
+| 106       | account     | 106                                                                 |    27 | 
+| 106       | callerid    | device <106>                                                        |    28 | 
+| 107       | secret      | 3428ibo3428                                                         |     2 | 
+| 107       | dtmfmode    | auto                                                                |     3 | 
+| 107       | canreinvite | no                                                                  |     4 | 
+| 107       | context     | from-internal                                                       |     5 | 
+| 107       | host        | dynamic                                                             |     6 | 
+| 107       | trustrpid   | yes                                                                 |     7 | 
+| 107       | sendrpid    | no                                                                  |     8 | 
+| 107       | type        | friend                                                              |     9 | 
+| 107       | nat         | yes                                                                 |    10 | 
+| 107       | port        | 5060                                                                |    11 | 
+| 107       | qualify     | yes                                                                 |    12 | 
+| 107       | qualifyfreq | 60                                                                  |    13 | 
+| 107       | transport   | udp                                                                 |    14 | 
+| 107       | avpf        | no                                                                  |    15 | 
+| 107       | icesupport  | no                                                                  |    16 | 
+| 107       | dtlsenable  | no                                                                  |    17 | 
+| 107       | dtlsverify  | no                                                                  |    18 | 
+| 107       | dtlssetup   | actpass                                                             |    19 | 
+| 107       | encryption  | no                                                                  |    20 | 
+| 107       | callgroup   | 10                                                                  |    21 | 
+| 107       | pickupgroup | 10                                                                  |    22 | 
+| 107       | disallow    |                                                                     |    23 | 
+| 107       | allow       |                                                                     |    24 | 
+| 107       | dial        | SIP/107                                                             |    25 | 
+| 107       | accountcode |                                                                     |    26 | 
+| 107       | mailbox     | 107@device                                                          |    27 | 
+| 107       | deny        | 0.0.0.0/0.0.0.0                                                     |    28 | 
+| 107       | permit      | 0.0.0.0/0.0.0.0                                                     |    29 | 
+| 107       | account     | 107                                                                 |    30 | 
+| 107       | callerid    | device <107>                                                        |    31 | 
+| 108       | secret      | 3428ibo3428                                                         |     2 | 
+| 108       | dtmfmode    | auto                                                                |     3 | 
+| 108       | canreinvite | no                                                                  |     4 | 
+| 108       | context     | from-internal                                                       |     5 | 
+| 108       | host        | dynamic                                                             |     6 | 
+| 108       | trustrpid   | yes                                                                 |     7 | 
+| 108       | sendrpid    | no                                                                  |     8 | 
+| 108       | type        | friend                                                              |     9 | 
+| 108       | nat         | yes                                                                 |    10 | 
+| 108       | port        | 5060                                                                |    11 | 
+| 108       | qualify     | yes                                                                 |    12 | 
+| 108       | qualifyfreq | 60                                                                  |    13 | 
+| 108       | transport   | udp                                                                 |    14 | 
+| 108       | avpf        | no                                                                  |    15 | 
+| 108       | icesupport  | no                                                                  |    16 | 
+| 108       | dtlsenable  | no                                                                  |    17 | 
+| 108       | dtlsverify  | no                                                                  |    18 | 
+| 108       | dtlssetup   | actpass                                                             |    19 | 
+| 108       | encryption  | no                                                                  |    20 | 
+| 108       | callgroup   |                                                                     |    21 | 
+| 108       | pickupgroup |                                                                     |    22 | 
+| 108       | disallow    |                                                                     |    23 | 
+| 108       | allow       |                                                                     |    24 | 
+| 108       | dial        | SIP/108                                                             |    25 | 
+| 108       | accountcode |                                                                     |    26 | 
+| 108       | mailbox     | 108@device                                                          |    27 | 
+| 108       | deny        | 0.0.0.0/0.0.0.0                                                     |    28 | 
+| 108       | permit      | 0.0.0.0/0.0.0.0                                                     |    29 | 
+| 108       | account     | 108                                                                 |    30 | 
+| 108       | callerid    | device <108>                                                        |    31 | 
+| tr-peer-1 | account     | 902167080000                                                        |     2 | 
+| tr-peer-1 | username    | 902167080000                                                        |     3 | 
+| tr-peer-1 | type        | peer                                                                |     4 | 
+| tr-peer-1 | qualify     | yes                                                                 |     5 | 
+| tr-peer-1 | secret      | fGx226X2gYbafMU                                                     |     6 | 
+| tr-peer-1 | nat         | auto                                                                |     7 | 
+| tr-peer-1 | insecure    | very                                                                |     8 | 
+| tr-peer-1 | host        | sip.pasifiktelekom.com.tr                                           |     9 | 
+| tr-peer-1 | fromuser    | 902167080000                                                        |    10 | 
+| tr-peer-1 | fromdomain  | sip.pasifiktelekom.com.tr                                           |    11 | 
+| tr-peer-1 | dtmfmode    | rfc2833                                                             |    12 | 
+| tr-peer-1 | disallow    | all                                                                 |    13 | 
+| tr-peer-1 | allow       | g729&ulaw&alaw                                                      |    14 | 
+| tr-reg-1  | register    | 902167080000:fGx226X2gYbafMU@sip.pasifiktelekom.com.tr/902167080000 |     0 | 
++-----------+-------------+---------------------------------------------------------------------+-------+
+212 rows in set (0.00 sec)
+
++-----------+----------+------+-----------+-----------+----------+-----------+-------------+---------+----------+--------------+----------+-----------------+-----------------------+-----------------------+-----------------------+
+| extension | password | name | voicemail | ringtimer | noanswer | recording | outboundcid | sipname | mohclass | noanswer_cid | busy_cid | chanunavail_cid | noanswer_dest         | busy_dest             | chanunavail_dest      |
++-----------+----------+------+-----------+-----------+----------+-----------+-------------+---------+----------+--------------+----------+-----------------+-----------------------+-----------------------+-----------------------+
+| 101       |          | 101  | novm      |        10 |          |           |             | 101     | default  |              |          |                 | from-did-direct,100,1 | from-did-direct,100,1 | from-did-direct,100,1 | 
+| 100       |          | 100  | novm      |         0 |          |           |             | 100     | default  |              |          |                 |                       |                       |                       | 
+| 106       |          | 106  | novm      |         0 |          |           |             | 106     | default  |              |          |                 |                       |                       |                       | 
+| 103       |          | 103  | novm      |         0 |          |           |             | 103     | default  |              |          |                 |                       |                       |                       | 
+| 105       |          | 105  | novm      |         0 |          |           |             | 105     | default  |              |          |                 |                       |                       |                       | 
+| 107       |          | 107  | novm      |         0 |          |           |             | 107     | default  |              |          |                 |                       |                       |                       | 
+| 108       |          | 108  | novm      |         0 |          |           |             | 108     | default  |              |          |                 |                       |                       |                       | 
++-----------+----------+------+-----------+-----------+----------+-----------+-------------+---------+----------+--------------+----------+-----------------+-----------------------+-----------------------+-----------------------+
+7 rows in set (0.00 sec)
