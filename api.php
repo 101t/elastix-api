@@ -6,7 +6,7 @@ class APICommand
 {
 	public function __construct($rkey, $cmd)
 	{
-		$this->key = 'YOUR_SECRET_KEY_50_CHARS';
+		$this->key = 'YOUR_SECRETKEY_50_RANDOM_CHARS';
 		$this->rkey = $rkey;
 		$this->cmd = $cmd;
 	}
