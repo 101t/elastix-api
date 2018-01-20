@@ -1,5 +1,5 @@
 # Elastix API
-Unofficial Elastix and Asterisk API to make FreePBX easy to manage, written using PHP4.
+Elastix and Asterisk API to make FreePBX easy to manage, written using PHP4.
 
 ## Installation
 Open your Elastix (CentOS) terminal, and go to elastix directory, then download it:
