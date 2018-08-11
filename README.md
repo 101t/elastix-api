@@ -32,6 +32,9 @@ This api package can implement:
 * SIP Trunk / Extension Management (Create, Update, Delete, Read)
 * Follow Me Extension Management (Create, Update, Delete, Read)
 
+## Document
+Installign guid and usage document [here](https://github.com/tarek-aec/elastix-api/wiki).
+
 ## Contribute
 
 Thank you for amazing community of FreePBX for useful information.
