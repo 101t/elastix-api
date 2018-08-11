@@ -33,7 +33,7 @@ This api package can implement:
 * Follow Me Extension Management (Create, Update, Delete, Read)
 
 ## Document
-Installign guid and usage document [here](https://github.com/tarek-aec/elastix-api/wiki).
+Installing and usage guide [here](https://github.com/tarek-aec/elastix-api/wiki).
 
 ## Contribute
 
