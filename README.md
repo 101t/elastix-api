@@ -1,6 +1,8 @@
 # Elastix API
 Elastix and Asterisk API Provider to make FreePBX easy to manage, written in PHP4.
 
+<p align="center"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/elastix.png" width="200"> <img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/asterisk.png" width="200"></p>
+
 ## Installation
 Open your Elastix (CentOS) terminal, and go to elastix directory, then download it:
 
@@ -32,8 +34,8 @@ This api package can implement:
 * SIP Trunk / Extension Management (Create, Update, Delete, Read)
 * Follow Me Extension Management (Create, Update, Delete, Read)
 
-## Document
-Installing and usage guide [here](https://github.com/tarek-aec/elastix-api/wiki).
+## Documentation
+Installation and developer guide [here](https://github.com/tarek-aec/elastix-api/wiki).
 
 ## Contribute
 
