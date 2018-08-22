@@ -1,7 +1,7 @@
 # Elastix API
-Elastix and Asterisk API Provider to make FreePBX easy to manage, written in PHP4.
+<p align="left"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/elastix.png" width="150"> <img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/asterisk.png" width="150"></p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/elastix.png" width="200"> <img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/asterisk.png" width="200"></p>
+Elastix and Asterisk API Provider to make FreePBX easy to manage, written in PHP4.
 
 ## Installation
 Open your Elastix (CentOS) terminal, and go to elastix directory, then download it:
