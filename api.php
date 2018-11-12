@@ -11,7 +11,7 @@ class APICommand
 		$this->cmd = $cmd;
 	}
 	public function execute(){
-		if (strcmp($this->key, $this->rkey)) {
+		if (strcmp($this->key, $this->rkey) == 0) {
 			switch ($this->cmd) {
 				case "auth":
 					$auth = new AuthManager();
