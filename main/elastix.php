@@ -111,7 +111,7 @@ class Elastix{
 		$name           = $_GET["name"];
                 $directory      = "/var/spool/asterisk/monitor";
                 $file = realpath($directory . $name);
-                if(strpos($file, $directory) !== false && file_exists($file) && is_file($file)){
+                if(strpos($file, $directory) !== false && strpos($file, $directory) == 0 && file_exists($file) && is_file($file)){
 			header("Content-Disposition: attachment; filename=\"" . basename($file) . "\"");
 			header("Content-Length: " . filesize($file));
 			header("Content-Type: application/octet-stream;");
