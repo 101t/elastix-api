@@ -108,24 +108,10 @@ class Elastix{
 		/*
 			$name = "/2015/12/08/out-05355620760-101-20151208-102449-1449563089.106.wav";
 		*/
-		$is_exist = true;
-		$name 		= $_POST["name"];
-		$directory 	= "/var/spool/asterisk/monitor";
-		$file = $directory;
-		$file .= $name;
-		if (!file_exists($file)) {
-			$path 	= pathinfo($file);
-			$dn 	= $path["dirname"];
-			$bn 	= $path["basename"];
-			exec("ls ".$dn." | grep ".$bn, $data);
-			$file 	= $dn;
-			$file .= "/".$data[0];
-			if(!file_exists($file)){
-				$is_exist = false;
-				//die("File not found");
-			}
-		}
-		if($is_exist){
+		$name           = $_GET["name"];
+                $directory      = "/var/spool/asterisk/monitor";
+                $file = realpath($directory . $name);
+                if(strpos($file, $directory) !== false && strpos($file, $directory) == 0 && file_exists($file) && is_file($file)){
 			header("Content-Disposition: attachment; filename=\"" . basename($file) . "\"");
 			header("Content-Length: " . filesize($file));
 			header("Content-Type: application/octet-stream;");
