@@ -49,7 +49,7 @@ class Elastix{
 		$where .= (is_null($status) || empty($status) || $status === "ALL") ? "(disposition IN ('ANSWERED', 'BUSY', 'FAILED', 'NO ANSWER'))" : "(disposition = '$status')";
 		$where .= " AND dst != 's' ";
 
-		if(!is_null($tatus))
+		if(!is_null($custom))
 			$where .= $custom;
 
 		return $where;
