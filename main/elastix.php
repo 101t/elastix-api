@@ -37,20 +37,21 @@ class Elastix{
 	}
 	private function _cdr_where_expression($start_date, $end_date, $field_name, $field_pattern, $status, $custom){
 		$where = "";
-		$where .= "(calldate BETWEEN '$start_date' AND '$end_date')";
-		$where .= " AND ";
-		$field_name_arr = array();
-		$field_name_arr["src"] = "src";
-		$field_name_arr["dst"] = "dst";
-		$field_name_arr["channel"] = "channel";
-		$field_name_arr["dstchannel"] = "dstchannel";
-		$field_name_arr["accountcode"] = "accountcode";
+		if (!is_null($start_date) && !is_null($end_date))
+			$where .= "(calldate BETWEEN '$start_date' AND '$end_date')";
 
-		$where .= "(".$field_name_arr[$field_name]." LIKE '%".$field_pattern."%')";
-		$where .= " AND ";
-		$where .= ($status === "ALL") ? "(disposition IN ('ANSWERED', 'BUSY', 'FAILED', 'NO ANSWER'))" : "(disposition = '$status')";
+		if ( !is_null($field_name) && !is_null($field_pattern)) {
+			$where = (empty($where))? $where : "$where AND ";
+			$where .= "($field_name LIKE '%$field_pattern%')";
+		}
+
+		$where = (empty($where))? $where : "$where AND ";
+		$where .= (is_null($status) || empty($status) || $status === "ALL") ? "(disposition IN ('ANSWERED', 'BUSY', 'FAILED', 'NO ANSWER'))" : "(disposition = '$status')";
 		$where .= " AND dst != 's' ";
-		$where .= $custom;
+
+		if(!is_null($tatus))
+			$where .= $custom;
+
 		return $where;
 	}
 	public function get_cdr(){
@@ -85,21 +86,20 @@ class Elastix{
 		*/
 		try {
 			$this->_get_db_connection("asteriskcdrdb");
-			$start_date 		= $_POST["start_date"];
-			$end_date 			= $_POST["end_date"];
-			$field_name 		= $_POST["field_name"];
-			$field_pattern 		= $_POST["field_pattern"];
-			$status 			= $_POST["status"];
-			$limit 				= $_POST["limit"];
-			$custom 			= $_POST["custom"];
-			$where_expression 	= $this->_cdr_where_expression($start_date, $end_date, $field_name, $field_pattern, $status, $custom);
-			$limit 				= $limit > 0 ? " LIMIT ".$limit." " : "";
-			$sql_cmd 	= "SELECT * FROM cdr WHERE $where_expression ORDER BY calldate DESC $limit";
-			$stmt 		= $this->db->prepare($sql_cmd);
+		 	$start_date             = $_POST["start_date"];
+			$end_date               = $_POST["end_date"];
+			$field_name             = $_POST["field_name"];
+			$field_pattern          = $_POST["field_pattern"];
+			$status                 = $_POST["status"];
+			$limit                  = isset($_POST["limit"])? $_POST["limit"] : 100;
+			$custom                 = $_POST["custom"];
+			$where_expression		= $this->_cdr_where_expression($start_date, $end_date, $field_name, $field_pattern, $status, $custom);
+			$sql_cmd        = "SELECT * FROM cdr WHERE $where_expression ORDER BY calldate DESC LIMIT $limit";
+			$stmt           = $this->db->prepare($sql_cmd);
 			$stmt->execute();
-			$result = (array)$stmt->fetchAll(PDO::FETCH_ASSOC);
-			header('Content-Type: application/json');
-			echo json_encode($result);
+		 	$result = (array)$stmt->fetchAll(PDO::FETCH_ASSOC);
+		 	header('Content-Type: application/json');
+		 	echo json_encode($result);
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
