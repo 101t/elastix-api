@@ -1,6 +1,11 @@
-<p align="left"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/elastix.png" width="200"> <img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/asterisk.png" width="150"></p>
+<h1 align="center">Elastix API</h1>
+<table>
+	<tr>
+		<td align="center"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/elastix.png" width="200"></td>
+		<td align="center"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/asterisk.png" width="200"></td>
+	</tr>
+</table>
 
-# Elastix API
 Elastix and Asterisk API Provider to make FreePBX easy to manage, written in PHP4.
 
 ## Installation
