@@ -1,10 +1,7 @@
 <h1 align="center">Elastix API</h1>
-<table>
-	<tr>
-		<td align="center"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/elastix.png" width="200"></td>
-		<td align="center"><img src="https://raw.githubusercontent.com/tarek-aec/elastix-api/master/asterisk.png" width="200"></td>
-	</tr>
-</table>
+<p align="center">
+	<img src="https://raw.githubusercontent.com/101t/elastix-api/master/docs/cover.png" width="200">
+</p>
 
 Elastix and Asterisk API Provider to make FreePBX easy to manage, written in PHP4.
 
@@ -13,7 +10,7 @@ Open your Elastix (CentOS) terminal, and go to elastix directory, then download 
 
 ```
 cd /var/www/html
-git clone https://github.com/tarek-aec/elastix-api.git
+git clone https://github.com/101t/elastix-api.git
 ```
 
 Open `api.php` and generate token key then replace it in:
@@ -40,7 +37,7 @@ This api package can implement:
 * Follow Me Extension Management (Create, Update, Delete, Read)
 
 ## Documentation
-Installation and developer guide [here](https://github.com/tarek-aec/elastix-api/wiki).
+Installation and developer guide [here](https://github.com/101t/elastix-api/wiki).
 
 ## Contribute
 
