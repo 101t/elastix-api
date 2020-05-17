@@ -1,6 +1,6 @@
 <h1 align="center">Elastix API</h1>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/101t/elastix-api/master/docs/cover.png" width="200">
+	<img src="https://raw.githubusercontent.com/101t/elastix-api/master/docs/cover.png">
 </p>
 
 Elastix and Asterisk API Provider to make FreePBX easy to manage, written in PHP4.
