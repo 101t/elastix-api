@@ -102,16 +102,11 @@ class IssabelDriverTest extends TestCase
 
     public function testGetIssabelVersionReadsFromReleaseFile(): void
     {
-        // Write a temporary release file and point the driver at it
+        // Write a temporary release file and verify the parsing logic
         $tmpFile = tempnam(sys_get_temp_dir(), 'issabel_rel_');
         file_put_contents($tmpFile, "4.0.0\n");
 
-        // IssabelDriver reads /etc/issabel-release, but we mock via reflection
-        $driver = new IssabelDriver();
-        $ref    = new \ReflectionMethod($driver, 'getIssabelVersion');
-        // We test the return format by replacing the hardcoded path via a
-        // quick anonymous subclass that overrides the file path constant
-        $version = $this->getVersionFromFile($driver, $tmpFile);
+        $version = $this->getVersionFromFile(new IssabelDriver(), $tmpFile);
         $this->assertSame('4.0.0', $version);
 
         unlink($tmpFile);

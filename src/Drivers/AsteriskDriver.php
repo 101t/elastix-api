@@ -166,12 +166,29 @@ class AsteriskDriver implements PbxDriverInterface
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
         }
 
-        $raw  = curl_exec($ch);
-        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $raw       = curl_exec($ch);
+        $code      = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
         curl_close($ch);
 
         if ($raw === false) {
-            throw new \RuntimeException('ARI request failed');
+            $message = 'ARI request failed';
+            if ($curlError !== '') {
+                $message .= ' (cURL error: ' . $curlError . ')';
+            }
+            throw new \RuntimeException($message);
+        }
+
+        if ($code >= 400) {
+            $bodyPreview = trim((string)$raw);
+            if (strlen($bodyPreview) > 500) {
+                $bodyPreview = substr($bodyPreview, 0, 500) . '...';
+            }
+            throw new \RuntimeException(sprintf(
+                'ARI request failed with HTTP status %d: %s',
+                $code,
+                $bodyPreview === '' ? '[empty response body]' : $bodyPreview
+            ));
         }
 
         $decoded = json_decode((string)$raw, true);
@@ -333,7 +350,7 @@ class AsteriskDriver implements PbxDriverInterface
         try {
             $action = "Action: Status\r\n";
             if ($channel !== null && $channel !== '') {
-                $action .= "Channel: {$channel}\r\n";
+                $action .= "Channel: " . $this->sanitizeAmiValue($channel) . "\r\n";
             }
             return $this->amiSend($action . "\r\n");
         } finally {
@@ -435,8 +452,8 @@ class AsteriskDriver implements PbxDriverInterface
     /**
      * Build a safe WHERE clause for the CDR query.
      *
-     * Uses prepared-statement placeholders bound via PDO to prevent SQL
-     * injection. The $filters array is user-supplied.
+     * Values are escaped via PDO::quote() to prevent SQL injection.
+     * The $filters array is user-supplied.
      *
      * @param array<string, mixed> $filters
      */
@@ -445,10 +462,9 @@ class AsteriskDriver implements PbxDriverInterface
         $clauses = [];
 
         if (!empty($filters['start_date']) && !empty($filters['end_date'])) {
-            // Bind via statement parameters
-            $clauses[] = "(calldate BETWEEN '"
-                . $this->db->quote((string)$filters['start_date']) . "' AND '"
-                . $this->db->quote((string)$filters['end_date']) . "')";
+            $startDate = $this->db->quote((string)$filters['start_date']);
+            $endDate   = $this->db->quote((string)$filters['end_date']);
+            $clauses[] = "(calldate BETWEEN {$startDate} AND {$endDate})";
         }
 
         $allowedFields = ['src', 'dst', 'channel', 'dstchannel', 'accountcode', 'clid', 'cnum', 'cnam'];
@@ -593,6 +609,9 @@ class AsteriskDriver implements PbxDriverInterface
     /**
      * Originate an outbound call via AMI.
      *
+     * All string values are sanitized to strip CR/LF characters before being
+     * embedded in the AMI frame (prevents header-injection attacks).
+     *
      * @param string $channel    The channel to originate from (e.g. PJSIP/200)
      * @param string $extension  The destination extension number
      * @param string $context    Dialplan context (default: from-internal)
@@ -611,17 +630,17 @@ class AsteriskDriver implements PbxDriverInterface
         $this->amiConnect();
         try {
             $cmd = "Action: Originate\r\n"
-                . "Channel: {$channel}\r\n"
-                . "Context: {$context}\r\n"
-                . "Exten: {$extension}\r\n"
+                . "Channel: "   . $this->sanitizeAmiValue($channel)   . "\r\n"
+                . "Context: "   . $this->sanitizeAmiValue($context)   . "\r\n"
+                . "Exten: "     . $this->sanitizeAmiValue($extension) . "\r\n"
                 . "Priority: 1\r\n"
-                . "Callerid: {$callerId}\r\n"
+                . "Callerid: "  . $this->sanitizeAmiValue($callerId)  . "\r\n"
                 . "Timeout: {$timeout}\r\n";
 
             if (!empty($variables)) {
                 $pairs = [];
                 foreach ($variables as $k => $v) {
-                    $pairs[] = "{$k}={$v}";
+                    $pairs[] = $this->sanitizeAmiValue($k) . '=' . $this->sanitizeAmiValue($v);
                 }
                 $cmd .= 'Variable: ' . implode('|', $pairs) . "\r\n";
             }
@@ -670,6 +689,16 @@ class AsteriskDriver implements PbxDriverInterface
     // ----------------------------------------------------------------
     // Private helpers — column parsing for "core show channels verbose"
     // ----------------------------------------------------------------
+
+    /**
+     * Strip all CR and LF characters from an AMI header value to prevent
+     * header-injection (CRLF injection) attacks via the line-oriented AMI
+     * protocol.
+     */
+    protected function sanitizeAmiValue(string $value): string
+    {
+        return str_replace(["\r", "\n"], '', $value);
+    }
 
     /** @return int[] */
     private function parseColumnLengths(string $headerLine): array

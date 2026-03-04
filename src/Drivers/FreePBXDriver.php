@@ -31,6 +31,9 @@ class FreePBXDriver extends AsteriskDriver
         $cfg = $config ?? Config::getInstance();
         $this->loadFreePBXConf($cfg->get('FREEPBX_CONF_PATH', '/etc/freepbx.conf'));
         $this->injectFreePBXCredentials($cfg);
+        // injectFreePBXCredentials() may call Config::reset(), so re-fetch the
+        // singleton to ensure the parent AsteriskDriver sees the injected credentials.
+        $cfg = Config::getInstance();
         parent::__construct($cfg);
     }
 
@@ -111,10 +114,13 @@ class FreePBXDriver extends AsteriskDriver
     {
         $this->amiConnect();
         try {
-            $this->amiSend(
-                "Action: QueueAdd\r\nQueue: {$queue}\r\nInterface: {$device}\r\nPenalty: {$penalty}\r\n\r\n"
+            $response = $this->amiSend(
+                "Action: QueueAdd\r\n"
+                . "Queue: "     . $this->sanitizeAmiValue($queue)  . "\r\n"
+                . "Interface: " . $this->sanitizeAmiValue($device) . "\r\n"
+                . "Penalty: {$penalty}\r\n\r\n"
             );
-            return true;
+            return strpos($response, 'Response: Success') !== false;
         } finally {
             $this->amiDisconnect();
         }
@@ -127,10 +133,12 @@ class FreePBXDriver extends AsteriskDriver
     {
         $this->amiConnect();
         try {
-            $this->amiSend(
-                "Action: QueueRemove\r\nQueue: {$queue}\r\nInterface: {$device}\r\n\r\n"
+            $response = $this->amiSend(
+                "Action: QueueRemove\r\n"
+                . "Queue: "     . $this->sanitizeAmiValue($queue)  . "\r\n"
+                . "Interface: " . $this->sanitizeAmiValue($device) . "\r\n\r\n"
             );
-            return true;
+            return strpos($response, 'Response: Success') !== false;
         } finally {
             $this->amiDisconnect();
         }

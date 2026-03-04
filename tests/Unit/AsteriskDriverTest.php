@@ -223,6 +223,33 @@ class AsteriskDriverTest extends TestCase
     }
 
     // ----------------------------------------------------------------
+    // sanitizeAmiValue — CRLF injection guard
+    // ----------------------------------------------------------------
+
+    public function testSanitizeAmiValueStripsCarriageReturn(): void
+    {
+        $driver = $this->createDriverWithoutConnection();
+        $ref    = new \ReflectionMethod($driver, 'sanitizeAmiValue');
+        $ref->setAccessible(true);
+
+        $result = $ref->invoke($driver, "PJSIP/200\r\nAction: Command");
+        $this->assertSame('PJSIP/200Action: Command', $result);
+        $this->assertStringNotContainsString("\r", $result);
+        $this->assertStringNotContainsString("\n", $result);
+    }
+
+    public function testSanitizeAmiValuePreservesNormalValue(): void
+    {
+        $driver = $this->createDriverWithoutConnection();
+        $ref    = new \ReflectionMethod($driver, 'sanitizeAmiValue');
+        $ref->setAccessible(true);
+
+        $this->assertSame('PJSIP/200', $ref->invoke($driver, 'PJSIP/200'));
+        $this->assertSame('from-internal', $ref->invoke($driver, 'from-internal'));
+        $this->assertSame('Alice <100>', $ref->invoke($driver, 'Alice <100>'));
+    }
+
+    // ----------------------------------------------------------------
     // Private helpers
     // ----------------------------------------------------------------
 

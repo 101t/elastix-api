@@ -20,11 +20,10 @@ $composerAutoload = __DIR__ . '/vendor/autoload.php';
 if (file_exists($composerAutoload)) {
     require $composerAutoload;
 
-    use PbxApi\Config\Config;
-    use PbxApi\Api\Router;
-
-    Config::getInstance(__DIR__);
-    (new Router())->handle();
+    // Fully-qualified names are used here because `use` statements are
+    // not permitted inside conditional blocks in PHP.
+    \PbxApi\Config\Config::getInstance(__DIR__);
+    (new \PbxApi\Api\Router())->handle();
 } else {
     // ---- Legacy fallback (no Composer) --------------------------------
     // Provides the same endpoints as the original api.php so existing

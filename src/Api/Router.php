@@ -239,8 +239,10 @@ class Router
     {
         $expected = $this->config->get('API_SECRET_KEY');
 
-        // Accept key from Authorization header or ?key= query param
-        $provided = $this->getAuthorizationHeader() ?? (isset($_GET['key']) ? (string)$_GET['key'] : '');
+        // Accept key only from the Authorization header to avoid leaking the
+        // secret via URL query parameters (which are routinely logged by web
+        // servers and proxies).
+        $provided = $this->getAuthorizationHeader() ?? '';
 
         if ($provided === '' || $expected === 'YOUR_SECRETKEY_50_RANDOM_CHARS') {
             return false;
@@ -341,20 +343,23 @@ class Router
 
     private function serveWavFile(): void
     {
-        $name      = isset($_GET['name']) ? (string)$_GET['name'] : '';
-        $directory = rtrim($this->config->get('RECORDINGS_PATH', '/var/spool/asterisk/monitor'), '/');
+        $name             = isset($_GET['name']) ? (string)$_GET['name'] : '';
+        $directory        = rtrim($this->config->get('RECORDINGS_PATH', '/var/spool/asterisk/monitor'), '/');
+        $directoryRealpath = realpath($directory);
 
-        if ($name === '') {
+        if ($name === '' || $directoryRealpath === false) {
             $this->json(['status' => 'File not found', 'code' => 404], 404);
             return;
         }
 
-        // Prevent path traversal: realpath must be inside $directory
-        $file = realpath($directory . '/' . ltrim($name, '/'));
+        // Prevent path traversal: realpath must be inside the configured directory.
+        // Using a trailing separator in the prefix check prevents matching
+        // sibling directories that share a common path prefix (e.g. /monitor2/).
+        $file = realpath($directoryRealpath . DIRECTORY_SEPARATOR . ltrim($name, '/'));
 
         if (
             $file !== false
-            && strpos($file, $directory) === 0
+            && str_starts_with($file, $directoryRealpath . DIRECTORY_SEPARATOR)
             && file_exists($file)
             && is_file($file)
         ) {

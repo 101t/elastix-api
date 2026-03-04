@@ -34,6 +34,9 @@ class IssabelDriver extends AsteriskDriver
         $confPath = $cfg->get('ISSABEL_CONF_PATH', '/etc/issabel.conf');
         $this->injectMysqlCredentials($cfg, $confPath);
 
+        // injectMysqlCredentials() may call Config::reset(), so re-fetch the
+        // singleton to ensure the parent AsteriskDriver sees the injected credentials.
+        $cfg = Config::getInstance();
         parent::__construct($cfg);
     }
 
